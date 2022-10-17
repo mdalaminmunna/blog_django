@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    Post Title
+    {{ post.title }}
 {% endblock  %}
 
 {% block css_files %}
@@ -11,19 +11,17 @@
 
 {% block content %}
     <section id="summary">
-        <h2>Post Title</h2>
+        <h2>{{ post.title }}</h2>
         <article>
-            <img src="{% static 'blog/images/bird.jpg' %}" alt="Post Title">
-            <address>By Crazy</address>
+            <img src="{% static 'blog/images/'|add:post.images %}" alt="{{ post.title }}">
+            <address>{{ post.author|title }}</address>
             <div>
-                Last updated <time>today</time>
+                Last updated <time>{{ post.date|date:"d M Y" }}</time>
             </div>
         </article>
     </section>
 
     <main>
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur suscipit, corporis voluptatum tenetur necessitatibus assumenda quod vero totam repellat, quidem dolores repellendus nobis eos recusandae doloremque eum dolorem vel culpa?
-        </p>
+        {{ post.content|linebreaks }}
     </main>
 {% endblock  %}
